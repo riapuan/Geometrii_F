@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentasi Matematika Kelas 6: Geometri</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary-color: #0f766e;
+            --secondary-color: #14b8a6;
+            --accent-color: #f97316;
+            --bg-color: #f0fdf4;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .slide-container {
+            width: 100%;
+            max-width: 920px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            box-sizing: border-box;
+            min-height: 540px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #ccfbf1;
+        }
+
+        .slide-header {
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .slide-header h2 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        .slide-header span {
+            font-size: 0.85rem;
+            color: #0d9488;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .slide-body {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .slide-body ul, .slide-body ol {
+            padding-left: 24px;
+        }
+
+        .slide-body li {
+            margin-bottom: 10px;
+        }
+
+        .box {
+            background-color: #f0fdf4;
+            border-left: 5px solid var(--secondary-color);
+            padding: 16px 20px;
+            border-radius: 6px;
+            margin: 16px 0;
+        }
+
+        .box-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 6px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 24px;
+            width: 100%;
+            max-width: 920px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        button:disabled {
+            background-color: #cbd5e1;
+            cursor: not-allowed;
+        }
+
+        .progress-indicator {
+            font-weight: 700;
+            color: #0f766e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container" id="slide-container">
+        <!-- Content injection dynamic -->
+    </div>
+
+    <div class="controls">
+        <button id="prev-btn" onclick="prevSlide()">Sebelumnya</button>
+        <span class="progress-indicator" id="progress">Slide 1 / 45</span>
+        <button id="next-btn" onclick="nextSlide()">Berikutnya</button>
+    </div>
+
+    <script>
+        const slides = [
+            // PHASE 1: FOUNDATION (Slides 1-5)
+            { phase: "Fase 1: Fondasi", title: "Modul Utama: Geometri Terpadu", content: `
+                <div style="text-align: center; padding-top: 40px;">
+                    <h1 style="color: var(--primary-color); font-size: 2.2rem;">Matematika Kelas 6</h1>
+                    <h3 style="color: var(--secondary-color);">Eksplorasi Geometri: Keliling, Luas, Volume, Jaring-jaring, Sudut, Simetri, & Koordinat</h3>
+                    <p><em>Kurikulum Merdeka - Fase C</em></p>
+                </div>
+            `},
+            { phase: "Fase 1: Fondasi", title: "Agenda Pembelajaran", content: `
+                <ul>
+                    <li><strong>Bagian 1:</strong> Keliling & Luas Bangun Datar dan Gabungan</li>
+                    <li><strong>Bagian 2:</strong> Volume & Jaring-jaring Bangun Ruang</li>
+                    <li><strong>Bagian 3:</strong> Analisis Sudut dan Garis</li>
+                    <li><strong>Bagian 4:</strong> Simetri Lipat dan Simetri Putar</li>
+                    <li><strong>Bagian 5:</strong> Sistem Koordinat Kartesius</li>
+                </ul>
+            `},
+            { phase: "Fase 1: Fondasi", title: "Tujuan Pembelajaran", content: `
+                <div class="box">
+                    <div class="box-title">Capaian Pembelajaran (Fase C)</div>
+                    Ananda dapat mengonstruksi, menghitung, serta menganalisis sifat-sifat spasial bangun datar, bangun ruang, sudut, simetri, dan koordinat secara mandiri dan sistematis.
+                </div>
+                <ul>
+                    <li>Menghitung keliling dan luas bangun datar serta bangun gabungan komposit.</li>
+                    <li>Menentukan volume berbagai jenis prisma, tabung, limas, dan kerucut.</li>
+                    <li>Mengenal pola jaring-jaring bangun ruang tiga dimensi.</li>
+                    <li>Menentukan letak titik dan bangun pada bidang koordinat kartesius.</li>
+                </ul>
+            `},
+            { phase: "Fase 1: Fondasi", title: "Aplikasi Geometri dalam Kehidupan Nyata", content: `
+                <ul>
+                    <li><strong>Arsitektur & Konstruksi:</strong> Perhitungan luas lantai, keliling pagar, dan volume bahan bangunan.</li>
+                    <li><strong>Desain Produk & Kemasan:</strong> Perancangan jaring-jaring kotak kemasan makanan.</li>
+                    <li><strong>Navigasi & Pemetaan:</strong> Penentuan posisi geografis menggunakan koordinat GPS.</li>
+                    <li><strong>Seni & Estetika:</strong> Penerapan simetri pada ornamen dan karya seni visual.</li>
+                </ul>
+            `},
+            { phase: "Fase 1: Fondasi", title: "Peta Konsep Geometri Terpadu", content: `
+                <p>Geometri mempelajari bentuk dan ruang melalui struktur:</p>
+                <ul>
+                    <li><strong>Dimensi Dua (2D):</strong> Sisi, keliling, luas, dan gabungan bentuk.</li>
+                    <li><strong>Dimensi Tiga (3D):</strong> Rusuk, sisi tegak, jaring-jaring, dan volume.</li>
+                    <li><strong>Analitik & Spasial:</strong> Sudut, derajat, simetri, dan koordinat \\((x, y)\\).</li>
+                </ul>
+            `},
+
+            // PHASE 2: WARM-UP (Slides 6-10)
+            { phase: "Fase 2: Pemanasan", title: "Tantangan Hitung Cepat: Konversi Satuan ⚡", content: `
+                <div class="box">
+                    <div class="box-title">Latihan Mental Math Satuan</div>
+                    Selesaikan konversi berikut dengan cepat:
+                </div>
+                <ul>
+                    <li>\\(2\\text{ m}^2 = \\dots\\text{ cm}^2\\)</li>
+                    <li>\\(1,5\\text{ liter} = \\dots\\text{ cm}^3\\)</li>
+                    <li>\\(3.000\\text{ g} = \\dots\\text{ kg}\\)</li>
+                    <li>\\(2\\text{ jam} = \\dots\\text{ detik}\\)</li>
+                </ul>
+            `},
+            { phase: "Fase 2: Pemanasan", title: "Ingat Kembali Rumus Luas Dasar", content: `
+                <ul>
+                    <li><strong>Persegi:</strong> \\(L = s \\times s\\)</li>
+                    <li><strong>Persegi Panjang:</strong> \\(L = p \\times l\\)</li>
+                    <li><strong>Segitiga:</strong> \\(L = \\frac{1}{2} \\times a \\times t\\)</li>
+                    <li><strong>Lingkaran:</strong> \\(L = \\pi r^2\\) (dengan \\(\\pi = \\frac{22}{7}\\) atau \\(3{,}14\\))</li>
+                </ul>
+            `},
+            { phase: "Fase 2: Pemanasan", title: "Sifat Operasi Hitung Distributif", content: `
+                <p>Dalam perhitungan luas gabungan, sifat distributif sangat membantu:</p>
+                <div class="box">
+                    <div class="box-title">Rumus Distributif</div>
+                    \\[a \\times (b + c) = (a \\times b) + (a \\times c)\\]
+                </div>
+                <p>Contoh: \\(12 \\times (10 + 5) = 120 + 60 = 180\\).</p>
+            `},
+            { phase: "Fase 2: Pemanasan", title: "Cek Prasyarat: Sifat Sudut Putaran", content: `
+                <ul>
+                    <li>Besar sudut satu putaran penuh adalah \\(360^\\circ\\).</li>
+                    <li>Besar sudut lurus adalah \\(180^\\circ\\).</li>
+                    <li>Besar sudut siku-siku adalah \\(90^\\circ\\).</li>
+                </ul>
+            `},
+            { phase: "Fase 2: Pemanasan", title: "Aturan Dasar KABATAKU dalam Geometri", content: `
+                <p>Perhitungan rumus geometri sering melibatkan operasi campuran kuadrat dan perkalian. Pastikan mendahulukan operasi dalam kurung dan perpangkatan sebelum melakukan penjumlahan luas/volume.</p>
+            `},
+
+            // PHASE 3: CORE TOPICS (Slides 11-25)
+            { phase: "Fase 3: Konsep Inti", title: "1. Keliling Bangun Datar", content: `
+                <p>Keliling adalah jumlah panjang seluruh sisi pembatas suatu bangun datar.</p>
+                <ul>
+                    <li><strong>Persegi:</strong> \\(K = 4 \\times s\\)</li>
+                    <li><strong>Persegi Panjang:</strong> \\(K = 2(p + l)\\)</li>
+                    <li><strong>Lingkaran:</strong> \\(K = \\pi d = 2\\pi r\\)</li>
+                </ul>
+            `},
+            { phase: "Fase 3: Konsep Inti", title: "Luas Bangun Datar Sederhana", content: `
+                <ul>
+                    <li><strong>Segitiga:</strong> \\(L = \\frac{1}{2} \\times a \\times t\\)</li>
+                    <li><strong>Jajargenjang:</strong> \\(L = a \\times t\\)</li>
+                    <li><strong>Trapesium:</strong> \\(L = \\frac{a + b}{2} \\times t\\)</li>
+                    <li><strong>Belah Ketupat / Layang-layang:</strong> \\(L = \\frac{1}{2} \\times d_1 \\times d_2\\)</li>
+                </ul>
+            `},
+            { phase: "Fase 3: Konsep Inti", title: "Bangun Datar Gabungan (Komposit)", content: `
+                <p>Strategi penyelesaian bangun gabungan:</p>
+                <ul>
+                    <li><strong>Luas Gabungan:</strong> Pecah menjadi beberapa bangun sederhana, hitung luas masing-masing, lalu jumlahkan.</li>
+                    <li><strong>Keliling Gabungan:</strong> Hanya hitung panjang garis terluar yang membentuk tepi luar bangun. Jangan sertakan garis batas yang berada di dalam gabungan!</li>
+                </ul>
+            `},
+            { phase: "Fase 3: Konsep Inti", title: "2. Volume Bangun Ruang", content: `
+                <p>Volume menyatakan kapasitas isi ruang tiga dimensi.</p>
+                <div class="box">
+                    <div class="box-title">Prinsip Umum Volume</div>
+                    \\[\\text{Volume} = \\text{Luas Alas} \\times \\text{Tinggi}\\]
+                </div>
+            `},
+            { phase: "Fase 3: Konsep Inti", title: "Volume Kubus, Balok, dan Tabung", content: `
+                <ul>
+                    <li><strong>Kubus:</strong> \\(V = s^3\\)</li>
+                    <li><strong>Balok:</strong> \\(V = p \\times l \\times t\\)</li>
+                    <li><strong>Tabung:</strong> \\(V = \\pi r^2 \\times t\\)</li>
+                </ul>
+            `},
+            { phase: "Fase 3: Konsep Inti", title: "Volume Prisma dan Limas", content: `
+                <ul>
+                    <li><strong>Prisma Segitiga/Lainnya:</strong> \\(V = \\text{Luas Alas Segitiga} \\times t_{\\text{prisma}}\\)</li>
+                    <li><strong>Limas Segi-n:</strong> \\(V = \\frac{1}{3} \\times \\text{Luas Alas} \\times t_{\\text{limas}}\\)</li>
+                    <li><strong>Kerucut:</strong> \\(V = \\frac{1}{3} \\times \\pi r^2 \\times t\\)</li>
+                </ul>
+            `},
+            { phase: "Fase 3: Konsep Inti", title: "3. Jaring-jaring Bangun Ruang", content: `
+                <p>Jaring-jaring adalah model 2D yang jika dilipat akan merakit sebuah bangun ruang 3D.</p>
+                <ul>
+                    <li><strong>Kubus:</strong> Memiliki 11 variasi pola jaring-jaring.</li>
+                    <li><strong>Balok:</strong> Memiliki jaring-jaring berupa 3 pasang persegi panjang yang saling berhadapan kongruen.</li>
+                    <li><strong>Prisma & Limas:</strong> Sisi alas dan selimut terbuka membentuk bentangan bidang datar.</li>
+                </ul>
+            `},
+            { phase: "Fase 3: Konsep Inti", title: "4. Sudut dan Garis", content: `
+                <ul>
+                    <li><strong>Sudut Lancip:</strong> Kurang dari \\(90^\\circ\\)</li>
+                    <li><strong>Sudut Siku-siku:</strong> Tepat \\(90^\\circ\\)</li>
+                    <li><strong>Sudut Tumpul:</strong> Antara \\(90^\\circ\\) dan \\(180^\\circ\\)</li>
+                    <li><strong>Sudut Lurus:</strong> Tepat \\(180^\\circ\\)</li>
+                    <li>Jumlah sudut dalam segitiga selalu \\(180^\\circ\\), dan pada segi empat adalah \\(360^\\circ\\).</li>
+                </ul>
+            `},
+            { phase: "Fase 3: Konsep Inti", title: "5. Simetri Lipat dan Simetri Putar", content: `
+                <ul>
+                    <li><strong>Simetri Lipat:</strong> Garis simetri yang membagi bangun menjadi dua bagian yang saling menutupi sempurna saat dilipat.</li>
+                    <li><strong>Simetri Putar:</strong> Jumlah rotasi (kurang dari 1 putaran penuh) di mana bangun menempati bingkainya kembali.</li>
+                </ul>
+            `},
+            { phase: "Fase 3: Konsep Inti", title: "6. Sistem Koordinat Kartesius", content: `
+                <p>Bidang koordinat dibentuk oleh sumbu mendatar \\(X\\) (absis) dan sumbu tegak \\(Y\\) (ordinat) yang berpotongan di titik asal \\((0,0)\\).</p>
+                <div class="box">
+                    <div class="box-title">Penulisan Titik</div>
+                    Setiap posisi dinyatakan dalam pasangan berurutan \\((x, y)\\).
+                </div>
+            `},
+            { phase: "Fase 3: Konsep Inti", title: "Membaca Bangun Datar pada Koordinat", content: `
+                <p>Titik-titik koordinat \\(A(x_1, y_1), B(x_2, y_2), C(x_3, y_3)\\) dapat dihubungkan untuk membentuk bangun datar seperti segitiga atau persegi panjang, di mana panjang sisi dihitung dari selisih koordinat yang sejejar.</p>
+            `},
+            { phase: "Fase 3: Konsep Inti", title: "Sintesis Geometri Terpadu", content: `
+                <p>Pemecahan masalah geometri tingkat lanjut sering menggabungkan konsep koordinat, luas bangun datar, dan volume bangun ruang dalam satu skenario soal cerita kontekstual.</p>
+            `},
+            { phase: "Fase 3: Konsep Inti", title: "Strategi Analisis Spasial", content: `
+                <ol>
+                    <li>Gambar sketsa atau ilustrasi masalah jika belum tersedia.</li>
+                    <li>Identifikasi rumus dasar yang relevan.</li>
+                    <li>Perhatikan kesesuaian satuan ukuran (cm, m, liter).</li>
+                    <li>Lakukan eksekusi perhitungan secara sistematis.</li>
+                </ol>
+            `},
+
+            // PHASE 4: GUIDED LEARNING (Slides 26-36)
+            { phase: "Fase 4: Terbimbing", title: "Latihan Terbimbing 1: Luas Gabungan", content: `
+                <div class="box">
+                    <div class="box-title">Soal 1</div>
+                    Hitung luas gabungan dari persegi panjang \\(p = 12\\text{ cm}, l = 8\\text{ cm}\\) dan setengah lingkaran di sisi lebarnya \\((d = 8\\text{ cm})\\).
+                </div>
+                <p><strong>Penyelesaian:</strong></p>
+                <ol>
+                    <li>Luas Persegi Panjang = \\(12 \\times 8 = 96\\text{ cm}^2\\)</li>
+                    <li>Jari-jari lingkaran \\(r = 4\\text{ cm}\\)</li>
+                    <li>Luas Setengah Lingkaran = \\(\\frac{1}{2} \\times 3{,}14 \\times 4^2 = 25{,}12\\text{ cm}^2\\)</li>
+                    <li>Total Luas = \\(96 + 25{,}12 = 121{,}12\\text{ cm}^2\\)</li>
+                </ol>
+            `},
+            { phase: "Fase 4: Terbimbing", title: "Latihan Terbimbing 2: Volume Tabung", content: `
+                <div class="box">
+                    <div class="box-title">Soal 2</div>
+                    Sebuah tabung memiliki jari-jari \\(7\\text{ cm}\\) dan tinggi \\(20\\text{ cm}\\). Berapa volumenya? \\((\\pi = \\frac{22}{7})\\)
+                </div>
+                <p><strong>Penyelesaian:</strong></p>
+                <ul>
+                    <li>\\(V = \\pi r^2 t\\)</li>
+                    <li>\\(V = \\frac{22}{7} \\times 7^2 \\times 20 = 154 \\times 20 = 3.080\\text{ cm}^3\\)</li>
+                </ul>
+            `},
+            { phase: "Fase 4: Terbimbing", title: "Latihan Terbimbing 3: Volume Limas", content: `
+                <div class="box">
+                    <div class="box-title">Soal 3</div>
+                    Limas segi empat beraturan memiliki alas persegi sisi \\(10\\text{ cm}\\) dan tinggi limas \\(12\\text{ cm}\\). Berapa volumenya?
+                </div>
+                <p><strong>Penyelesaian:</strong></p>
+                <ul>
+                    <li>Luas Alas = \\(10 \\times 10 = 100\\text{ cm}^2\\)</li>
+                    <li>\\(V = \\frac{1}{3} \\times \\text{Luas Alas} \\times t = \\frac{1}{3} \\times 100 \\times 12 = 400\\text{ cm}^3\\)</li>
+                </ul>
+            `},
+            { phase: "Fase 4: Terbimbing", title: "Latihan Terbimbing 4: Besar Sudut Segitiga", content: `
+                <div class="box">
+                    <div class="box-title">Soal 4</div>
+                    Dalam segitiga \\(ABC\\), besar \\(\\angle A = 50^\\circ\\) dan \\(\\angle B = 65^\\circ\\). Berapa besar \\(\\angle C\\)?
+                </div>
+                <p><strong>Penyelesaian:</strong></p>
+                <ul>
+                    <li>Jumlah sudut segitiga = \\(180^\\circ\\)</li>
+                    <li>\\(\\angle C = 180^\\circ - (50^\\circ + 65^\\circ) = 180^\\circ - 115^\\circ = 65^\\circ\\)</li>
+                </ul>
+            `},
+            { phase: "Fase 4: Terbimbing", title: "Latihan Terbimbing 5: Luas Segitiga pada Koordinat", content: `
+                <div class="box">
+                    <div class="box-title">Soal 5</div>
+                    Titik \\(P(1, 2), Q(7, 2), R(7, 6)\\) membentuk segitiga siku-siku. Hitunglah luasnya!
+                </div>
+                <p><strong>Penyelesaian:</strong></p>
+                <ul>
+                    <li>Panjang alas \\(PQ = 7 - 1 = 6\\) satuan.</li>
+                    <li>Tinggi \\(QR = 6 - 2 = 4\\) satuan.</li>
+                    <li>Luas = \\(\\frac{1}{2} \\times 6 \\times 4 = 12\\) satuan luas.</li>
+                </ul>
+            `},
+            { phase: "Fase 4: Terbimbing", title: "Trik Hitung Cepat Geometri", content: `
+                <div class="box">
+                    <div class="box-title">Tips & Trik</div>
+                    <ul>
+                        <li>Gunakan \\(\\pi = \\frac{22}{7}\\) jika jari-jari kelipatan 7 untuk mempercepat kalkulasi.</li>
+                        <li>Hafalkan tripel pythagoras \\((3,4,5; 5,12,13)\\) untuk mencari sisi miring dengan cepat.</li>
+                    </ul>
+                </div>
+            `},
+            { phase: "Fase 4: Terbimbing", title: "Analisis Kesalahan Umum", content: `
+                <ul>
+                    <li>Menghitung seluruh keliling sisi luar dan dalam pada bangun komposit.</li>
+                    <li>Lupa membagi tiga \\((\\frac{1}{3})\\) saat menghitung volume limas atau kerucut.</li>
+                    <li>Tertukar antara sumbu \\(X\\) dan sumbu \\(Y\\) pada koordinat kartesius.</li>
+                </ul>
+            `},
+            { phase: "Fase 4: Terbimbing", title: "Kuis Pemahaman Terbimbing", content: `
+                <p>Berapa banyak simetri lipat yang dimiliki oleh bangun belah ketupat?</p>
+                <p><strong>Jawaban:</strong> 2 simetri lipat.</p>
+            `},
+
+            // PHASE 5: INDEPENDENT PRACTICE (Slides 37-42)
+            { phase: "Fase 5: Mandiri", title: "Tantangan Mandiri 1", content: `
+                <div class="box">
+                    <div class="box-title">Soal Mandiri 1</div>
+                    Sebuah kebun berbentuk persegi panjang berukuran \\(25\\text{ m} \\times 16\\text{ m}\\). Di tengah kebun dibuat kolam berbentuk lingkaran berdiameter \\(14\\text{ m}\\). Berapa luas kebun di luar kolam?
+                </div>
+            `},
+            { phase: "Fase 5: Mandiri", title: "Tantangan Mandiri 2", content: `
+                <div class="box">
+                    <div class="box-title">Soal Mandiri 2</div>
+                    Sebuah balok berukuran panjang \\(15\\text{ cm},\\) lebar \\(10\\text{ cm},\\) dan tinggi \\(8\\text{ cm}\\). Hitunglah volume balok tersebut!
+                </div>
+            `},
+            { phase: "Fase 5: Mandiri", title: "Tantangan Mandiri 3", content: `
+                <div class="box">
+                    <div class="box-title">Soal Mandiri 3</div>
+                    Titik \\(K(2, 3), L(6, 3), M(6, 7),\\) dan titik \\(N\\) membentuk persegi panjang \\(KLMN\\). Tentukan koordinat titik \\(N\\)!
+                </div>
+            `},
+            { phase: "Fase 5: Mandiri", title: "Pembahasan Tantangan Mandiri", content: `
+                <ul>
+                    <li><strong>Mandiri 1:</strong> Luas persegi panjang = \\(400\\text{ m}^2\\). Luas lingkaran = \\(\\frac{22}{7} \\times 7^2 = 154\\text{ m}^2\\). Sisa = \\(400 - 154 = 246\\text{ m}^2\\).</li>
+                    <li><strong>Mandiri 2:</strong> \\(V = 15 \\times 10 \\times 8 = 1.200\\text{ cm}^3\\).</li>
+                    <li><strong>Mandiri 3:</strong> Koordinat \\(N = (2, 7)\\).</li>
+                </ul>
+            `},
+            { phase: "Fase 5: Mandiri", title: "Refleksi Kemampuan Spasial", content: `
+                <ul>
+                    <li>Apakah kamu dapat membayangkan bentuk bangun ruang dari jaring-jaringnya?</li>
+                    <li>Bagaimana ketelitianmu dalam menghitung luas gabungan?</li>
+                </ul>
+            `},
+
+            // PHASE 6: CLOSING (Slides 43-45)
+            { phase: "Fase 6: Penutup", title: "Rangkuman Pembelajaran Geometri", content: `
+                <ul>
+                    <li>Keliling adalah tepi luar, luas adalah bidang datar, dan volume adalah kapasitas ruang.</li>
+                    <li>Prinsip volume bangun ruang bertumpu pada perkalian luas alas dan tinggi.</li>
+                    <li>Koordinat kartesius dan simetri memperkuat pemahaman letak dan bentuk benda.</li>
+                </ul>
+            `},
+            { phase: "Fase 6: Penutup", title: "Exit Ticket (Tiket Keluar)", content: `
+                <div class="box">
+                    <div class="box-title">Uji Kilat 🎟️</div>
+                    <ol>
+                        <li>Berapakah jumlah besar sudut dalam sebuah segi empat?</li>
+                        <li>Apa rumus volume kerucut?</li>
+                    </ol>
+                </div>
+            `},
+            { phase: "Fase 6: Penutup", title: "Selesai! Kerja Bagus 👏", content: `
+                <div style="text-align: center; padding-top: 40px;">
+                    <h2>Luar Biasa! Ananda Telah Menguasai Sesi Geometri!</h2>
+                    <p>Terus kembangkan kemampuan penalaran spasialmu setiap hari!</p>
+                </div>
+            `}
+        ];
+
+        let currentSlide = 0;
+
+        function renderSlide() {
+            const slide = slides[currentSlide];
+            const container = document.getElementById('slide-container');
+            container.innerHTML = `
+                <div>
+                    <div class="slide-header">
+                        <span>${slide.phase}</span>
+                        <h2>${slide.title}</h2>
+                    </div>
+                    <div class="slide-body">
+                        ${slide.content}
+                    </div>
+                </div>
+            `;
+            document.getElementById('progress').innerText = `Slide ${currentSlide + 1} / ${slides.length}`;
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === slides.length - 1;
+
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                renderSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                renderSlide();
+            }
+        }
+
+        renderSlide();
+    </script>
+</body>
+</html>
